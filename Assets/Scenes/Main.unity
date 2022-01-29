@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2985900299827658073, guid: 683972628a0ea6a4f9677892c578e057, type: 3}
-  prefabBullets: {fileID: 0}
+  prefabBullets: {fileID: 6371932124747712433, guid: 642a8cfc95002884a96a00a3842a370c, type: 3}
   minX: -8
   maxX: 8
   minY: -4
