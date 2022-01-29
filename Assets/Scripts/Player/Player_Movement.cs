@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+
 
 public class Player_Movement : MonoBehaviour
 {
@@ -17,63 +19,30 @@ public class Player_Movement : MonoBehaviour
     private const string horizontalAxis = "Horizontal";
     private const string verticalAxis = "Vertical";
 
-
-
     public float speed = 5;
     public float gravity = -5;
 
-    float velocityY = 0;
+    PhotonView view;
+
+    private void Start()
+    {
+        view = GetComponent<PhotonView>();
+    }
 
     void FixedUpdate()
     {
-        Vector3 Movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
-        player.transform.position += Movement * speed * Time.deltaTime;
-
+        if (view.IsMine)
+        {
+            Vector3 Movement = new Vector2(Input.GetAxis(horizontalAxis), Input.GetAxis(verticalAxis));
+            player.transform.position += Movement * speed * Time.deltaTime;
+        }
+       
     }   
 
-    private void LimitSpeed()
-    {
-        if (rigidBody2D.velocity.magnitude > topSpeed)
-        {
-            rigidBody2D.velocity = rigidBody2D.velocity.normalized * topSpeed;
-        }   
-    }
 
-    private void ReceptMovementAxis()
-    {
-        movementAxisReceptor.x = Input.GetAxisRaw(horizontalAxis);
-        movementAxisReceptor.y = Input.GetAxisRaw(verticalAxis);
-    }
 
-    private void ApplyForce()
-    {
-      /*  if (Input.GetAxisRaw(verticalAxis) > 0)
-        {
-            rigidBody2D.AddForce(player.up * Time.deltaTime * moveSpeed * Input.GetAxis(verticalAxis));
-        }
-        if (Input.GetAxisRaw(verticalAxis) < 0)
-        {
-            rigidBody2D.AddForce(player.up * Time.deltaTime * moveSpeed * -0.5f);
-        }
-      */
-
-        if (Input.GetKey(KeyCode.A)) rigidBody2D.AddForce(Vector3.left * Time.deltaTime * moveSpeed);
-        if (Input.GetKey(KeyCode.D)) rigidBody2D.AddForce(Vector3.right * Time.deltaTime * moveSpeed);
-        if (Input.GetKey(KeyCode.W)) rigidBody2D.AddForce(Vector3.up * Time.deltaTime * moveSpeed);
-        if (Input.GetKey(KeyCode.S)) rigidBody2D.AddForce(Vector3.down * Time.deltaTime * moveSpeed);
-    }
-
-    private void ApplyRotation()
-    {
-       // rigidBody2D.MoveRotation(rigidBody2D.rotation + movementAxisReceptor.x * -1 * rotationSpeed * Time.deltaTime);
-    }
-
-    private void ResetAxis()
-    {
-        movementAxisReceptor.x = 0;
-        movementAxisReceptor.y = 0;
-    }
+  
+  
 
     public void ResetPlayerOrientation()
     {        
