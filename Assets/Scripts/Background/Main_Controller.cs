@@ -36,6 +36,8 @@ public class Main_Controller : MonoBehaviour
     [SerializeField] float tempRoughness;
     [SerializeField] float tempFadeInTime;
     [SerializeField] float tempFadeOutTime;
+
+    public SpawnPlayers spawnPlayers;
     // Start is called before the first frame update
     void Start()
     {

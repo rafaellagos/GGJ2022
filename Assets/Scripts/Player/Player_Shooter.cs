@@ -27,7 +27,8 @@ public class Player_Shooter : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1") && main_Controller.IsPlayerAlive() == true && main_Controller.GameIsPaused() == false && main_Controller.GameStarted() == true)
             {
-                Instantiate(laserPrefab, transform.position, transform.rotation);
+                main_Controller.spawnPlayers.InstantiateBullet(transform.position);
+                //Instantiate(laserPrefab, transform.position, transform.rotation);
                 main_Controller.EffectsPlay(shootClip);
                 anim.SetTrigger("Squash");
             }

@@ -46,13 +46,21 @@ public class Player_Movement : MonoBehaviour
                 main_Controller.ScreenShake();
             }
         }
-       
-    }   
+
+    }
+
+   /* [RPC]
+    public void DebugRPC()
+    {
+        if (!photonView.isMine)
+        {
+            photonView.GetComponent<ItemContainer>().isLootable = true;
+        }
+    }*/
 
 
 
-  
-  
+
 
     public void ResetPlayerOrientation()
     {        

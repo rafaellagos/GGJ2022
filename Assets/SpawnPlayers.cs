@@ -9,6 +9,8 @@ public class SpawnPlayers : MonoBehaviour
 
     public GameObject playerPrefab;
 
+    public GameObject prefabBullets;
+
     public float minX;
     public float maxX;
     public float minY;
@@ -25,5 +27,10 @@ public class SpawnPlayers : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void InstantiateBullet(Vector2 bulletPosition) 
+    {
+        PhotonNetwork.Instantiate(prefabBullets.name, bulletPosition, Quaternion.identity);
     }
 }

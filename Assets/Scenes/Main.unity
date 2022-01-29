@@ -882,6 +882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 2985900299827658073, guid: 683972628a0ea6a4f9677892c578e057, type: 3}
+  prefabBullets: {fileID: 0}
   minX: -8
   maxX: 8
   minY: -4
@@ -1183,6 +1184,7 @@ MonoBehaviour:
   tempRoughness: 0
   tempFadeInTime: 0
   tempFadeOutTime: 0
+  spawnPlayers: {fileID: 529284714}
 --- !u!4 &861849169
 Transform:
   m_ObjectHideFlags: 0
