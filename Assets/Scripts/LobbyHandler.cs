@@ -4,17 +4,21 @@ using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 
-public class LobbyHandler : MonoBehaviour
+public class LobbyHandler : MonoBehaviourPunCallbacks
 {
     //UI Elements
     [Header("UI Elements")]
     public InputField createInput;
     public InputField joinInput;
+    public Text connectionStatus;
+    public Button connectButton;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        PhotonNetwork.ConnectUsingSettings();
+        connectionStatus.text = "Not Connected";
+        connectButton.interactable = false;
     }
 
     // Update is called once per frame
@@ -49,6 +53,7 @@ public class LobbyHandler : MonoBehaviour
     {
         if(createInput.text == "" && joinInput.text == "")
         {
+            Debug.Log("No server to connect");
             return;
         }
         else if( createInput.text != "" && joinInput.text == "")
@@ -59,5 +64,20 @@ public class LobbyHandler : MonoBehaviour
         {
             Debug.Log("Joining server!");
         }
+    }
+
+
+    //PhotonNetwork
+    public override void OnConnectedToMaster()
+    {
+        PhotonNetwork.JoinLobby();
+    }
+
+    public override void OnJoinedLobby()
+    {
+        Debug.Log("On Lobby");
+
+        connectionStatus.text = "Server Connected";
+        connectButton.interactable = true;
     }
 }
