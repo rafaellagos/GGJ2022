@@ -46,7 +46,7 @@ public class Player_Movement : MonoBehaviour
 
     private void ApplyForce()
     {
-        if (Input.GetAxisRaw(verticalAxis) > 0)
+      /*  if (Input.GetAxisRaw(verticalAxis) > 0)
         {
             rigidBody2D.AddForce(player.up * Time.deltaTime * moveSpeed * Input.GetAxis(verticalAxis));
         }
@@ -54,11 +54,17 @@ public class Player_Movement : MonoBehaviour
         {
             rigidBody2D.AddForce(player.up * Time.deltaTime * moveSpeed * -0.5f);
         }
+      */
+
+        if (Input.GetKey(KeyCode.A)) rigidBody2D.AddForce(Vector3.left * Time.deltaTime * moveSpeed);
+        if (Input.GetKey(KeyCode.D)) rigidBody2D.AddForce(Vector3.right * Time.deltaTime * moveSpeed);
+        if (Input.GetKey(KeyCode.W)) rigidBody2D.AddForce(Vector3.up * Time.deltaTime * moveSpeed);
+        if (Input.GetKey(KeyCode.S)) rigidBody2D.AddForce(Vector3.down * Time.deltaTime * moveSpeed);
     }
 
     private void ApplyRotation()
     {
-        rigidBody2D.MoveRotation(rigidBody2D.rotation + movementAxisReceptor.x * -1 * rotationSpeed * Time.deltaTime);
+       // rigidBody2D.MoveRotation(rigidBody2D.rotation + movementAxisReceptor.x * -1 * rotationSpeed * Time.deltaTime);
     }
 
     private void ResetAxis()
