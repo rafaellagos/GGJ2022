@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/TDTK_Free/Scenes/TDTKFree_DemoMenu.unity
+    guid: 0b87f2febda2f1945a9d51ec4ccac339
+  - enabled: 1
+    path: Assets/TDTK_Free/Scenes/TDTKFree_OnePath.unity
+    guid: 7e3799435e1a65c479bca6d39fcad336
+  - enabled: 1
+    path: Assets/TDTK_Free/Scenes/TDTKFree_TwoPath.unity
+    guid: b567de80142e5664abe812c1d2647de4
   m_configObjects: {}
