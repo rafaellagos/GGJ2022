@@ -1405,7 +1405,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.326, y: 0.8295824}
   m_AnchorMax: {x: 0.326, y: 0.8295824}
-  m_AnchoredPosition: {x: 209.92435, y: -8.897385}
+  m_AnchoredPosition: {x: 209.92435, y: -8.8974}
   m_SizeDelta: {x: 347.8485, y: 60.985397}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1163846462
@@ -1707,19 +1707,7 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1861688391}
-        m_TargetAssemblyTypeName: LobbyHandler, Assembly-CSharp
-        m_MethodName: JoinRoom
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2362,7 +2350,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1861688391}
         m_TargetAssemblyTypeName: LobbyHandler, Assembly-CSharp
-        m_MethodName: joinServer
+        m_MethodName: JoinRoom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

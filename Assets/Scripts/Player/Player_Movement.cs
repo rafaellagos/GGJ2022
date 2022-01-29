@@ -26,6 +26,11 @@ public class Player_Movement : MonoBehaviour
 
     private void Start()
     {
+        player = this.transform;
+        rigidBody2D = this.GetComponent<Rigidbody2D>();
+
+        main_Controller = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
+
         view = GetComponent<PhotonView>();
     }
 
@@ -35,6 +40,11 @@ public class Player_Movement : MonoBehaviour
         {
             Vector3 Movement = new Vector2(Input.GetAxis(horizontalAxis), Input.GetAxis(verticalAxis));
             player.transform.position += Movement * speed * Time.deltaTime;
+
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                main_Controller.ScreenShake();
+            }
         }
        
     }   

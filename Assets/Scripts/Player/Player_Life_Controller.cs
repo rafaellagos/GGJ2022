@@ -7,7 +7,7 @@ public class Player_Life_Controller : MonoBehaviour
 {
 
     [SerializeField] private int playerLife;
-    [SerializeField] private Text playerLifeText;
+  //  [SerializeField] private Text playerLifeText;
     [SerializeField] private AudioClip damageEffect;
     [SerializeField] private AudioClip destroyEffect;
     [SerializeField] private float invencibleTime;
@@ -34,7 +34,7 @@ public class Player_Life_Controller : MonoBehaviour
     public void ResetGame()
     { 
         playerLife = 3;
-        playerLifeText.text = "X " + playerLife.ToString();
+      //  playerLifeText.text = "X " + playerLife.ToString();
         myCollider.enabled = true;
         Invencibility();
     }
@@ -53,7 +53,7 @@ public class Player_Life_Controller : MonoBehaviour
             if (playerLife > 0 && canTakeDamage == true)
             {
                 playerLife = playerLife - 1;
-                playerLifeText.text = "X " + playerLife.ToString();     
+           //     playerLifeText.text = "X " + playerLife.ToString();     
                 main_Controller.EffectsPlay(damageEffect);
                 Invencibility();
                 main_Controller.ScreenShake();

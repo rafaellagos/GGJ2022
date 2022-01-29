@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Player_Shooter : MonoBehaviour
 {
@@ -11,19 +12,25 @@ public class Player_Shooter : MonoBehaviour
 
     private Animator anim;
 
+    PhotonView view;
+
     private void Start()
     {
         main_Controller = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
         anim = this.GetComponent<Animator>();
+        view = GetComponent<PhotonView>();
     }
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1") && main_Controller.IsPlayerAlive() == true && main_Controller.GameIsPaused() == false && main_Controller.GameStarted() == true)
+        if (view.IsMine)
         {
-            Instantiate(laserPrefab, transform.position, transform.rotation);
-            main_Controller.EffectsPlay(shootClip);
-            anim.SetTrigger("Squash");
+            if (Input.GetButtonDown("Fire1") && main_Controller.IsPlayerAlive() == true && main_Controller.GameIsPaused() == false && main_Controller.GameStarted() == true)
+            {
+                Instantiate(laserPrefab, transform.position, transform.rotation);
+                main_Controller.EffectsPlay(shootClip);
+                anim.SetTrigger("Squash");
+            }
         }
     }
 }

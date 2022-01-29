@@ -228,6 +228,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 4173255663377756301}
+  - {fileID: -1752227255391895716}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -278,5 +279,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 0
+    Name: Death
+  - Type: 9
+    SynchronizeType: 0
+    Name: Invencibility
+  - Type: 9
+    SynchronizeType: 0
+    Name: Damage
+  - Type: 9
+    SynchronizeType: 0
+    Name: Squash
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
+  - SynchronizeType: 2
+    LayerIndex: 1
+  - SynchronizeType: 2
+    LayerIndex: 2
