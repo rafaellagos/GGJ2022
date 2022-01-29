@@ -17,17 +17,19 @@ public class Player_Movement : MonoBehaviour
     private const string horizontalAxis = "Horizontal";
     private const string verticalAxis = "Vertical";
 
+
+
+    public float speed = 5;
+    public float gravity = -5;
+
+    float velocityY = 0;
+
     void FixedUpdate()
     {
-        LimitSpeed();
-        if (!main_Controller.IsPlayerAlive())
-        {
-            ResetAxis();
-            return;
-        }
-        ReceptMovementAxis();
-        ApplyForce();
-        ApplyRotation();
+        Vector3 Movement = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+        player.transform.position += Movement * speed * Time.deltaTime;
+
     }   
 
     private void LimitSpeed()

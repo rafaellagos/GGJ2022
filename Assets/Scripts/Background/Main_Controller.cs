@@ -40,13 +40,17 @@ public class Main_Controller : MonoBehaviour
     void Start()
     {
         playerAlive = true;
-        player_Life_Controller = player.GetComponent<Player_Life_Controller>();
-        player_Movement = player.GetComponent<Player_Movement>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (player == null)player =  GameObject.FindGameObjectWithTag("Player");
+        if (player_Life_Controller == null) player_Life_Controller = player.GetComponent<Player_Life_Controller>();
+        if (player_Movement == null) player_Movement = player.GetComponent<Player_Movement>();
+
+
         if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel"))
         {
             if (gameStarted == false && startGame == false)

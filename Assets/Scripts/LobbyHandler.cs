@@ -80,4 +80,20 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
         connectionStatus.text = "Server Connected";
         connectButton.interactable = true;
     }
+
+    public void CreateRoom() 
+    {
+        PhotonNetwork.CreateRoom(createInput.text);
+
+    }
+
+    public void JoinRoom() 
+    {
+        PhotonNetwork.JoinRoom(joinInput.text);
+    }
+
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("Main");
+    }
 }
