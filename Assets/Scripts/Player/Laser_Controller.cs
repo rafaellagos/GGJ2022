@@ -58,7 +58,7 @@ public class Laser_Controller : MonoBehaviour
             canCollide = false;
             myCollider.enabled = false;
             StartCoroutine("StopMovement");
-            collision.GetComponent<Asteroid_Controller>().AsteroidCollision(this.transform);
+            collision.GetComponent<Asteroid_Controller>().CallAsteroidCollision(this.transform);
         }
 
     }
