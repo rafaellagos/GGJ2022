@@ -595,6 +595,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: enemyShot
       objectReference: {fileID: 0}
+    - target: {fileID: 775032993674205434, guid: 68923d3e5168b7448aecce3df1eb728c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 775032993674205435, guid: 68923d3e5168b7448aecce3df1eb728c, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1737,7 +1741,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1167699420
 Transform:
   m_ObjectHideFlags: 0
@@ -5749,7 +5753,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2013099926
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5842,11 +5846,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ea5c226a83d674b4e8efc1b0ed283b97, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
