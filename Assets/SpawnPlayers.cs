@@ -7,7 +7,8 @@ using Photon.Pun;
 public class SpawnPlayers : MonoBehaviour
 {
 
-    public GameObject playerPrefab;
+    public GameObject player1Prefab;
+    public GameObject player2Prefab;
 
     public GameObject prefabBullets;
 
@@ -21,7 +22,16 @@ public class SpawnPlayers : MonoBehaviour
     void Start()
     {
         Vector2 randomPosition = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
-        PhotonNetwork.Instantiate(playerPrefab.name, randomPosition, Quaternion.identity);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.Instantiate(player1Prefab.name, randomPosition, Quaternion.identity);
+        }
+        else
+        {
+            PhotonNetwork.Instantiate(player2Prefab.name, randomPosition, Quaternion.identity);
+        }
+        
+
     }
 
     void Update()

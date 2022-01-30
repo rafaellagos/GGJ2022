@@ -107,6 +107,7 @@ public class Asteroid_Controller : MonoBehaviour
                     for (int i = 0; i < 2; i++)
                     {
                         Asteroid_Controller prefab = PhotonNetwork.Instantiate("Asteroid Medium", transform.position, transform.rotation).GetComponent<Asteroid_Controller>();
+
                         prefab.direction = i;
                     }
                 }
@@ -147,16 +148,6 @@ public class Asteroid_Controller : MonoBehaviour
     }
 
     #region ONLINE
-    /*   if (Input.GetKeyDown(KeyCode.O))
-          {
-              p1Life++;
-              view.RPC("SetP1Life", RpcTarget.All, p1Life);
-          }
-  if (Input.GetKeyDown(KeyCode.P))
-  {
-      p2Life++;
-      view.RPC("SetP2Life", RpcTarget.All, p2Life);
-  }*/
 
     [PunRPC]
     public void CallDestroy()
