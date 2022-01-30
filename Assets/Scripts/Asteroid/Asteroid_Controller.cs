@@ -96,6 +96,7 @@ public class Asteroid_Controller : MonoBehaviour
             StartCoroutine("CanCollid");
             if (asteroidLife <= 0)
             {
+
                 mainController.EnemyKill();
                 mainController.AddPoints(asteroidValue);
                 anim.SetTrigger("Explosion");
@@ -105,7 +106,7 @@ public class Asteroid_Controller : MonoBehaviour
                 {
                     for (int i = 0; i < 2; i++)
                     {
-                        Asteroid_Controller prefab = Instantiate(mainController.asteroidPrefabs[1], transform.position, transform.rotation);
+                        Asteroid_Controller prefab = PhotonNetwork.Instantiate("Asteroid Medium", transform.position, transform.rotation).GetComponent<Asteroid_Controller>();
                         prefab.direction = i;
                     }
                 }
@@ -113,13 +114,14 @@ public class Asteroid_Controller : MonoBehaviour
                 {
                     for (int i = 0; i < 2; i++)
                     {
-                        Asteroid_Controller prefab = Instantiate(mainController.asteroidPrefabs[2], transform.position, transform.rotation);
+                        Asteroid_Controller prefab = PhotonNetwork.Instantiate("Asteroid Small", transform.position, transform.rotation).GetComponent<Asteroid_Controller>();
                         prefab.direction = i;
                     }
                 }
-            } 
 
-           
+            }
+
+
         } 
     }
 
@@ -128,14 +130,20 @@ public class Asteroid_Controller : MonoBehaviour
         yield return new WaitForSeconds(timeToCollision);
         canColid = true;
     }
-    public void DestroyObj() 
-    {
-        Destroy(this.gameObject);
-    }
 
     public void CollisionCall(Transform collisionPoint)
     {
         AsteroidCollision(collisionPoint);
+    }
+
+    public void DestroyObj() 
+    {
+        Destroy();
+    }
+
+    public void Destroy()
+    {
+       view.RPC("CallDestroy", RpcTarget.All);
     }
 
     #region ONLINE
@@ -151,19 +159,10 @@ public class Asteroid_Controller : MonoBehaviour
   }*/
 
     [PunRPC]
-    public void CallDestroy(int life)
+    public void CallDestroy()
     {
-        view.RPC("DestroyObj", RpcTarget.All);
+        Destroy(this.gameObject);
     }
-    
-    [PunRPC]
-    public void CallAsteroidCollision(Transform collisionPoint)
-    {
-        view.RPC("CollisionCall", RpcTarget.All, collisionPoint);
-    }
-
-    
-
 
     #endregion
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Laser_Controller : MonoBehaviour
 {
@@ -58,7 +59,7 @@ public class Laser_Controller : MonoBehaviour
             canCollide = false;
             myCollider.enabled = false;
             StartCoroutine("StopMovement");
-            collision.GetComponent<Asteroid_Controller>().CallAsteroidCollision(this.transform);
+            collision.GetComponent<Asteroid_Controller>().CollisionCall(this.transform);
         }
 
     }

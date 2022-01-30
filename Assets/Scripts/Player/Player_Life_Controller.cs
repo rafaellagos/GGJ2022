@@ -84,7 +84,7 @@ public class Player_Life_Controller : MonoBehaviour
                 }
 
 
-                main_Controller.view.RPC("SetScreenShake", RpcTarget.All, playerLife);
+                main_Controller.view.RPC("SetScreenShake", RpcTarget.All);
 
 
                 main_Controller.EffectsPlay(damageEffect);

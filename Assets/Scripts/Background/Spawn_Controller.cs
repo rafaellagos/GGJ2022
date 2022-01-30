@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Spawn_Controller : MonoBehaviour
 {
@@ -36,14 +37,19 @@ public class Spawn_Controller : MonoBehaviour
 
     private void Spawn() 
     {
-        for (int i = 0; i < baseEnemies+currentWave; i++)
+        if (PhotonNetwork.IsMasterClient)
         {
-            Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
-            Instantiate(main_Controller.asteroidPrefabs[0], randomPositionOnScreen, Quaternion.Euler(new Vector3(0, 0,Random.Range(0, 360))));
-            currentEnemies += 7;
+            for (int i = 0; i < baseEnemies + currentWave; i++)
+            {
+                Vector2 randomPositionOnScreen = Camera.main.ViewportToWorldPoint(new Vector2(Random.value, Random.value));
+
+                PhotonNetwork.Instantiate("Asteroid Large", randomPositionOnScreen, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
+                currentEnemies += 7;
+            }
+            main_Controller.DestroyLasers();
+            main_Controller.ResetInvencibility();
         }
-        main_Controller.DestroyLasers();
-        main_Controller.ResetInvencibility();
+        
     }
 
     public void DecreaseEnemies() 
