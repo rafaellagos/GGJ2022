@@ -56,13 +56,15 @@ public class LobbyHandler : MonoBehaviourPunCallbacks
             Debug.Log("No server to connect");
             return;
         }
-        else if( createInput.text != "" && joinInput.text == "")
+        else if(createInput.text != "" && joinInput.text == "")
         {
             Debug.Log("Creating server!");
+            CreateRoom();
         }
         else if(createInput.text == "" && joinInput.text != "")
         {
             Debug.Log("Joining server!");
+            JoinRoom();
         }
     }
 
