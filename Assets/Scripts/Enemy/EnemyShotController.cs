@@ -6,9 +6,12 @@ public class EnemyShotController : MonoBehaviour
 {
     //Imports
     [Tooltip("0 = blue, 1 = red")]
-    public GameObject[] shots;
-    public bool red;
-    public enum direction // your custom enumeration
+    public GameObject[] shots;      // two color game objects to show
+    public enum Polarity { white, black }       // polarity options
+    public Polarity polarity;                   // current polarity
+
+    public float lifeSpan = 4;      // shot is destroyed after this time
+    public enum direction           // shot direction
     {
         bottom,
         bottomRight,
@@ -22,18 +25,21 @@ public class EnemyShotController : MonoBehaviour
     };
     public direction currectDirection = direction.bottom;
 
-    public float speed;
-    public Vector2 moveDirection;
+    public float speed;             // shot speed
+    public Vector2 moveDirection;   // shot direction (calculated below)
 
-    bool move;
+    bool move;                      // if it is all set to the shot exist
 
-
+    private void OnEnable()
+    {
+        Invoke("destroyMe", lifeSpan);  // destroy the shot after X secs
+    }
     // Start is called before the first frame update
     void Start()
     {
         move = false;
         
-        spawn();
+        spawn();                        // do the proper direction math
     }
 
     // Update is called once per frame
@@ -86,7 +92,7 @@ public class EnemyShotController : MonoBehaviour
                 break;
         }
         //enable the correct color
-        if (red)
+        if (polarity ==  Polarity.black)
         {
             shots[1].SetActive(true);
             shots[0].SetActive(false);
@@ -97,5 +103,10 @@ public class EnemyShotController : MonoBehaviour
             shots[0].SetActive(true);
         }
         move = true;
+    }
+
+    void destroyMe()
+    {
+        Destroy(gameObject);
     }
 }
