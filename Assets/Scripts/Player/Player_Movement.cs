@@ -30,7 +30,6 @@ public class Player_Movement : MonoBehaviour
         rigidBody2D = this.GetComponent<Rigidbody2D>();
 
         main_Controller = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
-
         view = GetComponent<PhotonView>();
     }
 

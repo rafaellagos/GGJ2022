@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class Player_Life_Controller : MonoBehaviour
 {
@@ -16,13 +17,25 @@ public class Player_Life_Controller : MonoBehaviour
     private Animator anim;
     private Collider2D myCollider;
     private bool canTakeDamage;
-   
+
+    public PhotonView view;
+
     // Start is called before the first frame update
     void Start()
     {
         main_Controller = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
         anim = GetComponent<Animator>();
         myCollider = GetComponent<Collider2D>();
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            main_Controller.view.RPC("SetP1Life", RpcTarget.All, 3);
+        }
+        else
+        {
+            main_Controller.view.RPC("SetP2Life", RpcTarget.All, 3);
+        }
+
         Invoke("ActivateDamage", invencibleTime);
     }
 
@@ -32,9 +45,15 @@ public class Player_Life_Controller : MonoBehaviour
     }
 
     public void ResetGame()
-    { 
-        playerLife = 3;
-      //  playerLifeText.text = "X " + playerLife.ToString();
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            main_Controller.view.RPC("SetP1Life", RpcTarget.All, 3);
+        }
+        else
+        {
+            main_Controller.view.RPC("SetP2Life", RpcTarget.All, 3);
+        }
         myCollider.enabled = true;
         Invencibility();
     }
@@ -52,11 +71,25 @@ public class Player_Life_Controller : MonoBehaviour
         {
             if (playerLife > 0 && canTakeDamage == true)
             {
-                playerLife = playerLife - 1;
-           //     playerLifeText.text = "X " + playerLife.ToString();     
+                playerLife--;
+
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    main_Controller.view.RPC("SetP1Life", RpcTarget.All, playerLife);
+
+                }
+                else
+                {
+                    main_Controller.view.RPC("SetP2Life", RpcTarget.All, playerLife);
+                }
+
+
+                main_Controller.view.RPC("SetScreenShake", RpcTarget.All, playerLife);
+
+
                 main_Controller.EffectsPlay(damageEffect);
                 Invencibility();
-                main_Controller.ScreenShake();
+               // main_Controller.ScreenShake();
                 anim.SetTrigger("Damage");
             } 
             if (playerLife <= 0)

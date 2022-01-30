@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using EZCameraShake;
+using Photon.Pun;
 
 public class Main_Controller : MonoBehaviour
 {
+
+
     public bool gameStarted;
     public bool destroyLasers;
     public bool playerAlive;
@@ -38,14 +41,24 @@ public class Main_Controller : MonoBehaviour
     [SerializeField] float tempFadeOutTime;
 
     public SpawnPlayers spawnPlayers;
-    // Start is called before the first frame update
+
+
+
+    public PhotonView view;
+
+    public Text player1Life;
+    public Text player2Life;
+
+    public int p1Life;
+    public int p2Life;
+
+
     void Start()
     {
         playerAlive = true;
-        
+        view = GetComponent<PhotonView>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (player == null)player =  GameObject.FindGameObjectWithTag("Player");
@@ -82,7 +95,13 @@ public class Main_Controller : MonoBehaviour
 
 
         GameIsPaused();
+
+
+
     }
+
+   
+
 
     IEnumerator GameStart() 
     {
@@ -151,4 +170,37 @@ public class Main_Controller : MonoBehaviour
 
         CameraShaker.Instance.ShakeOnce(tempMagnitude, tempRoughness, tempFadeInTime, tempFadeOutTime);
     }
+
+
+
+    #region ONLINE
+  /*   if (Input.GetKeyDown(KeyCode.O))
+        {
+            p1Life++;
+            view.RPC("SetP1Life", RpcTarget.All, p1Life);
+        }
+if (Input.GetKeyDown(KeyCode.P))
+{
+    p2Life++;
+    view.RPC("SetP2Life", RpcTarget.All, p2Life);
+}*/
+    [PunRPC]
+    public void SetP1Life(int life)
+    {
+        player1Life.text = life.ToString();
+    }
+
+    [PunRPC]
+    public void SetP2Life(int life)
+    {
+        player2Life.text = life.ToString();
+    }
+
+    [PunRPC]
+    public void SetScreenShake()
+    {
+        ScreenShake();
+    }
+
+    #endregion
 }
