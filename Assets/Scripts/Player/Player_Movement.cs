@@ -31,6 +31,16 @@ public class Player_Movement : MonoBehaviour
 
         main_Controller = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
         view = GetComponent<PhotonView>();
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            main_Controller.p1Movement = this;
+
+        }
+        else
+        {
+            main_Controller.p2Movement = this;
+        }
     }
 
     void FixedUpdate()
