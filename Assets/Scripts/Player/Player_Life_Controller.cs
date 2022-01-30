@@ -33,14 +33,12 @@ public class Player_Life_Controller : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             main_Controller.view.RPC("SetP1Life", RpcTarget.All, 3);
-            main_Controller.p1LifeController = this;
             polarity = Polarity.white;
             transform.gameObject.tag = "White";
         }
         else
         {
             main_Controller.view.RPC("SetP2Life", RpcTarget.All, 3);
-            main_Controller.p2LifeController = this;
             polarity = Polarity.black;
             transform.gameObject.tag = "Black";
         }
@@ -50,6 +48,8 @@ public class Player_Life_Controller : MonoBehaviour
 
     }
 
+
+   
     public void ActivateDamage()
     {
         canTakeDamage = true;
@@ -91,18 +91,23 @@ public class Player_Life_Controller : MonoBehaviour
         {
             if (playerLife > 0 && canTakeDamage == true)
             {
+                Invencibility();
+                Debug.Log("colidiu essa bosta");
                 playerLife--;
 
+              
                 if (PhotonNetwork.IsMasterClient)
                 {
-                    main_Controller.view.RPC("SetP1Life", RpcTarget.All, playerLife);
-
+                    Debug.Log("P1");
+                    main_Controller.p1Life--;
+                    main_Controller.UpdateP1Lives();
                 }
-                else
+                if (!PhotonNetwork.IsMasterClient)
                 {
-                    main_Controller.view.RPC("SetP2Life", RpcTarget.All, playerLife);
+                    Debug.Log("P2");
+                    main_Controller.p2Life--;
+                    main_Controller.UpdateP2Lives();
                 }
-
 
                 main_Controller.view.RPC("SetScreenShake", RpcTarget.All);
 

@@ -62,24 +62,58 @@ public class Main_Controller : MonoBehaviour
     public Player_Movement p2Movement;
 
 
+    public void SetVariablesPlayer1()
+    {
+        if (gameEnded == false && GameIsPaused() == false)
+        {
+            player1 = GameObject.Find("Player1(Clone)");
+            p1LifeController = player1.GetComponent<Player_Life_Controller>();
+            p1Movement = player1.GetComponent<Player_Movement>();
+        }
+    }
+
+    public void SetVariablesPlayer2()
+    {
+       
+        if (PhotonNetwork.CurrentRoom.PlayerCount > 1 && gameEnded == false)
+        {
+            player2 = GameObject.Find("Player2(Clone)");
+            p2LifeController = player2.GetComponent<Player_Life_Controller>();
+            p2Movement = player2.GetComponent<Player_Movement>();
+        }   
+           
+    }
+
+   
+
     void Start()
     {
         playerAlive = true;
         view = GetComponent<PhotonView>();
 
-        if (!PhotonNetwork.IsMasterClient)
+
+        p1Life = 3;
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount > 1)
         {
             p2Life = 3;
-
-        }
-        else
-        {
-            p1Life = 3;
         }
     }
 
+    
+
     void Update()
     {
+
+        if (player1 == null || p1LifeController == null || p1Movement == null)
+        {
+            SetVariablesPlayer1();
+        }
+        if (player2 == null || p2LifeController == null || p2Movement == null)
+        {
+            SetVariablesPlayer2();
+        }
+
         if (gameEnded == false)
         {
           /*  if (player == null) player = GameObject.FindGameObjectWithTag("Player");
@@ -125,7 +159,39 @@ public class Main_Controller : MonoBehaviour
             gameOVerPanel.SetActive(true);
         }
 
+        if (gameStarted)
+        {
+            if (p1Life <= 0)
+            {
+                P1Death();
+            }
+            if (p2Life <= 0)
+            {
+                P2Death();
+            }
+        }
+
     }
+
+    public void P1Death()
+    {
+        player1.GetComponent<Player_Shooter>().enabled = false;
+        p1LifeController.enabled = false;
+        p1Movement.enabled = false;
+    }
+
+    public void P2Death()
+    {
+
+        if (PhotonNetwork.CurrentRoom.PlayerCount > 1)
+        {
+            player2.GetComponent<Player_Shooter>().enabled = false;
+            p2LifeController.enabled = false;
+            p2Movement.enabled = false;
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }
+    }
+
     public void GameOver()
     {
         view.RPC("CallGameOver", RpcTarget.All);
@@ -134,6 +200,12 @@ public class Main_Controller : MonoBehaviour
 
     IEnumerator Disconnect()
     {
+        /*if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.CurrentRoom.IsOpen = false;
+        }*/
+
+
         PhotonNetwork.Disconnect();
         while (PhotonNetwork.IsConnected)
         {
@@ -141,7 +213,9 @@ public class Main_Controller : MonoBehaviour
             Debug.Log("Disconnecting. . .");
         }
         Debug.Log("DISCONNECTED!");
-        SceneManager.LoadScene(0);
+
+
+        PhotonNetwork.LoadLevel(0);
     }
 
 
@@ -215,21 +289,31 @@ public class Main_Controller : MonoBehaviour
     }
 
 
+    
+    public void UpdateP1Lives() 
+    {
+        view.RPC("SetP1Life", RpcTarget.All, p1Life);
+        Debug.Log("P1 --");
+    }
+    
+    public void UpdateP2Lives() 
+    {
+        view.RPC("SetP2Life", RpcTarget.All, p2Life);
+        Debug.Log("P2 --");
 
+    }
     #region ONLINE
-  
+
     [PunRPC]
     public void SetP1Life(int life)
     {
         player1Life.text = life.ToString();
-        p1Life = life;
     }
 
     [PunRPC]
     public void SetP2Life(int life)
     {
         player2Life.text = life.ToString();
-        p2Life = life;
     }
 
     [PunRPC]
