@@ -13,6 +13,9 @@ public class Spawn_Controller : MonoBehaviour
 
     private Main_Controller main_Controller;
 
+    
+
+
     // Start is called before the first frame update
     void Start()
     {

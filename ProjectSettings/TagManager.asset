@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bullet
+  - Clouds
+  - Main_Controller
+  - Asteroid
+  - White
+  - Black
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using EZCameraShake;
 using Photon.Pun;
+using UnityEngine.SceneManagement;
 
 public class Main_Controller : MonoBehaviour
 {
@@ -14,12 +15,11 @@ public class Main_Controller : MonoBehaviour
     public bool playerAlive;
     public bool gameEnded;
 
-    public GameObject player;
     public Spawn_Controller spawn;
 
-    [Header("Prefabs for asteroids")]
+   /* [Header("Prefabs for asteroids")]
     [Tooltip("0 - large / 1 - medium / 2 - small")]
-    public Asteroid_Controller[] asteroidPrefabs;
+    public Asteroid_Controller[] asteroidPrefabs;*/
 
 
     [SerializeField] private UI_Controller uI_Controller;
@@ -29,9 +29,8 @@ public class Main_Controller : MonoBehaviour
     [SerializeField] private AudioClip startSound;
     [SerializeField] private AudioSource effects;
 
-    private string playAgainString = "press enter to play again";
-    private Player_Life_Controller player_Life_Controller;
-    private Player_Movement player_Movement;
+    private string playAgainString = "Match Ended";
+    
     private int points;
     private bool startGame;
 
@@ -52,18 +51,42 @@ public class Main_Controller : MonoBehaviour
     public int p1Life;
     public int p2Life;
 
+    public GameObject gameOVerPanel;
+
+    public GameObject player1;
+    public GameObject player2;
+
+    public Player_Life_Controller p1LifeController;
+    public Player_Life_Controller p2LifeController;
+    public Player_Movement p1Movement;
+    public Player_Movement p2Movement;
+
 
     void Start()
     {
         playerAlive = true;
         view = GetComponent<PhotonView>();
+
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            p2Life = 3;
+
+        }
+        else
+        {
+            p1Life = 3;
+        }
     }
 
     void Update()
     {
-        if (player == null)player =  GameObject.FindGameObjectWithTag("Player");
-        if (player_Life_Controller == null) player_Life_Controller = player.GetComponent<Player_Life_Controller>();
-        if (player_Movement == null) player_Movement = player.GetComponent<Player_Movement>();
+        if (gameEnded == false)
+        {
+          /*  if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+            if (player_Life_Controller == null) player_Life_Controller = player.GetComponent<Player_Life_Controller>();
+            if (player_Movement == null) player_Movement = player.GetComponent<Player_Movement>();*/
+        }
+      
 
 
         if (Input.GetButtonDown("Submit") || Input.GetButtonDown("Cancel"))
@@ -83,8 +106,8 @@ public class Main_Controller : MonoBehaviour
                 else
                 {
                     spawn.ResetGame();
-                    player_Life_Controller.ResetGame();
-                    player_Movement.ResetPlayerOrientation();
+                  //  player_Life_Controller.ResetGame();
+                    //player_Movement.ResetPlayerOrientation();
                     points = 0;
                     pointsText.text = points.ToString();
                     gameEnded = false;
@@ -96,11 +119,30 @@ public class Main_Controller : MonoBehaviour
 
         GameIsPaused();
 
-
+        if (p1Life <= 0 && p2Life <= 0)
+        {
+            gameEnded = true;
+            gameOVerPanel.SetActive(true);
+        }
 
     }
+    public void GameOver()
+    {
+        view.RPC("CallGameOver", RpcTarget.All);
+    }
 
-   
+
+    IEnumerator Disconnect()
+    {
+        PhotonNetwork.Disconnect();
+        while (PhotonNetwork.IsConnected)
+        {
+            yield return null;
+            Debug.Log("Disconnecting. . .");
+        }
+        Debug.Log("DISCONNECTED!");
+        SceneManager.LoadScene(0);
+    }
 
 
     IEnumerator GameStart() 
@@ -142,7 +184,8 @@ public class Main_Controller : MonoBehaviour
 
     public void ResetInvencibility() 
     {
-        player_Life_Controller.Invencibility();
+        p1LifeController.Invencibility();
+        p2LifeController.Invencibility();
     }
 
     public bool GameIsPaused() 
@@ -179,12 +222,14 @@ public class Main_Controller : MonoBehaviour
     public void SetP1Life(int life)
     {
         player1Life.text = life.ToString();
+        p1Life = life;
     }
 
     [PunRPC]
     public void SetP2Life(int life)
     {
         player2Life.text = life.ToString();
+        p2Life = life;
     }
 
     [PunRPC]
@@ -192,6 +237,14 @@ public class Main_Controller : MonoBehaviour
     {
         ScreenShake();
     }
+    
+    [PunRPC]
+    public void CallGameOver()
+    {
+        StartCoroutine(Disconnect());
+    }
+
+
 
     /*   if (Input.GetKeyDown(KeyCode.O))
         {

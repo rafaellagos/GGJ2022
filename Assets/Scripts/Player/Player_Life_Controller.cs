@@ -8,7 +8,6 @@ public class Player_Life_Controller : MonoBehaviour
 {
 
     [SerializeField] private int playerLife;
-  //  [SerializeField] private Text playerLifeText;
     [SerializeField] private AudioClip damageEffect;
     [SerializeField] private AudioClip destroyEffect;
     [SerializeField] private float invencibleTime;
@@ -20,7 +19,6 @@ public class Player_Life_Controller : MonoBehaviour
 
     public PhotonView view;
 
-    // Start is called before the first frame update
     void Start()
     {
         main_Controller = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
@@ -30,13 +28,17 @@ public class Player_Life_Controller : MonoBehaviour
         if (PhotonNetwork.IsMasterClient)
         {
             main_Controller.view.RPC("SetP1Life", RpcTarget.All, 3);
+            main_Controller.p1LifeController = this;
         }
         else
         {
             main_Controller.view.RPC("SetP2Life", RpcTarget.All, 3);
+            main_Controller.p2LifeController = this;
         }
 
         Invoke("ActivateDamage", invencibleTime);
+
+
     }
 
     public void ActivateDamage()
@@ -98,6 +100,8 @@ public class Player_Life_Controller : MonoBehaviour
                 myCollider.enabled = false;
                 main_Controller.EffectsPlay(destroyEffect);
                 main_Controller.PlayerDeath();
+
+                PhotonNetwork.Destroy(this.gameObject);
             }
         }       
     }
