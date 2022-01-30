@@ -207,6 +207,7 @@ MonoBehaviour:
   damageEffect: {fileID: 8300000, guid: 2af7ffbb6db8c54448ea1cf18323a8b5, type: 3}
   destroyEffect: {fileID: 8300000, guid: 15dd678cf770c5047b47f557806a1cfb, type: 3}
   invencibleTime: 2
+  view: {fileID: 0}
 --- !u!114 &2696910295796124394
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Photon.Pun;
 public class Asteroid_Controller : MonoBehaviour
 {
     private enum AsteroidSize { small, medium, large };
@@ -20,9 +20,9 @@ public class Asteroid_Controller : MonoBehaviour
     [SerializeField] private int asteroidValue;
     [SerializeField] private float scrollingSpeed;
     [SerializeField] private AudioClip explosionEffect;
-    
-    
-    
+
+
+    public PhotonView view;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,8 @@ public class Asteroid_Controller : MonoBehaviour
 
         canMove = true;
         canColid = true;
-       
+
+        view = GetComponent<PhotonView>();
     }
 
     void FixedUpdate()
@@ -76,6 +77,8 @@ public class Asteroid_Controller : MonoBehaviour
         }
         
     }
+
+
 
     public void AsteroidCollision(Transform hitObj) 
     {
@@ -129,4 +132,39 @@ public class Asteroid_Controller : MonoBehaviour
     {
         Destroy(this.gameObject);
     }
+
+    public void CollisionCall(Transform collisionPoint)
+    {
+        AsteroidCollision(collisionPoint);
+    }
+
+    #region ONLINE
+    /*   if (Input.GetKeyDown(KeyCode.O))
+          {
+              p1Life++;
+              view.RPC("SetP1Life", RpcTarget.All, p1Life);
+          }
+  if (Input.GetKeyDown(KeyCode.P))
+  {
+      p2Life++;
+      view.RPC("SetP2Life", RpcTarget.All, p2Life);
+  }*/
+
+    [PunRPC]
+    public void CallDestroy(int life)
+    {
+        view.RPC("DestroyObj", RpcTarget.All);
+    }
+    
+    [PunRPC]
+    public void CallAsteroidCollision(Transform collisionPoint)
+    {
+        view.RPC("CollisionCall", RpcTarget.All, collisionPoint);
+    }
+
+    
+
+
+    #endregion
+
 }

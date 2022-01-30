@@ -161,7 +161,7 @@ public class Main_Controller : MonoBehaviour
     {     
        return playerAlive;
     }
-    public void ScreenShake( ) 
+    public void ScreenShake() 
     {
          tempMagnitude = (float)(Random.Range(0, 40)) / 10;
          tempRoughness = (float)(Random.Range(0, 40)) / 10;
@@ -174,16 +174,7 @@ public class Main_Controller : MonoBehaviour
 
 
     #region ONLINE
-  /*   if (Input.GetKeyDown(KeyCode.O))
-        {
-            p1Life++;
-            view.RPC("SetP1Life", RpcTarget.All, p1Life);
-        }
-if (Input.GetKeyDown(KeyCode.P))
-{
-    p2Life++;
-    view.RPC("SetP2Life", RpcTarget.All, p2Life);
-}*/
+  
     [PunRPC]
     public void SetP1Life(int life)
     {
@@ -202,5 +193,15 @@ if (Input.GetKeyDown(KeyCode.P))
         ScreenShake();
     }
 
+    /*   if (Input.GetKeyDown(KeyCode.O))
+        {
+            p1Life++;
+            view.RPC("SetP1Life", RpcTarget.All, p1Life);
+        }
+if (Input.GetKeyDown(KeyCode.P))
+{
+    p2Life++;
+    view.RPC("SetP2Life", RpcTarget.All, p2Life);
+}*/
     #endregion
 }
