@@ -118,11 +118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   asteroid: 2
-  asteroidLife: 3
+  asteroidLife: 30
   timeToCollision: 0.1
   impact: -100
   asteroidValue: 50
-  scrollingSpeed: 1
+  scrollingSpeed: 0
   explosionEffect: {fileID: 8300000, guid: 3ee2e1b953c462c47887ff9b10625b0a, type: 3}
   view: {fileID: 0}
 --- !u!95 &5605720072710953169
@@ -238,13 +238,13 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Explosion
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Damage
   - Type: 9
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: Squash
   m_SynchronizeLayers:
   - SynchronizeType: 2

@@ -984,6 +984,7 @@ MonoBehaviour:
   rigidBody2D: {fileID: 2964224648444904811}
   speed: 5
   gravity: -5
+  view: {fileID: 0}
 --- !u!114 &2964224648444904809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,6 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootClip: {fileID: 8300000, guid: 36b432b3d2c4dd24ea240c168d88c497, type: 3}
   laserPrefab: {fileID: 6371932124747712433, guid: 642a8cfc95002884a96a00a3842a370c, type: 3}
+  view: {fileID: 0}
 --- !u!114 &2964224648444904807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1014,7 +1016,6 @@ MonoBehaviour:
   damageEffect: {fileID: 8300000, guid: 2af7ffbb6db8c54448ea1cf18323a8b5, type: 3}
   destroyEffect: {fileID: 8300000, guid: 15dd678cf770c5047b47f557806a1cfb, type: 3}
   invencibleTime: 2
-  view: {fileID: 0}
   polarity: 0
 --- !u!114 &2683687690778718940
 MonoBehaviour:

@@ -18,6 +18,9 @@ public class Laser_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        Debug.Log("spawned");
+
         mainController = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
         anim = this.GetComponent<Animator>();
         myCollider = this.GetComponent<Collider2D>();
@@ -28,12 +31,12 @@ public class Laser_Controller : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (mainController.destroyLasers == true)
+       /* if (mainController.destroyLasers == true)
         {
             Destroy();
             canCollide = false;
             myCollider.enabled = false;
-        }
+        }*/
         if (canMove == true)
         {
             transform.Translate(Vector2.up * scrollingSpeed * Time.deltaTime);
@@ -50,6 +53,9 @@ public class Laser_Controller : MonoBehaviour
     public void Destroy() 
     {   
         Destroy(this.gameObject);
+        Debug.Log("destroy");
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

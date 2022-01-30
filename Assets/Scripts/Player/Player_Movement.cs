@@ -22,7 +22,7 @@ public class Player_Movement : MonoBehaviour
     public float speed = 5;
     public float gravity = -5;
 
-    PhotonView view;
+    public PhotonView view;
 
     private void Start()
     {
