@@ -17,7 +17,6 @@ public class Player_Life_Controller : MonoBehaviour
     private Collider2D myCollider;
     private bool canTakeDamage;
 
-    public PhotonView view;
 
     public Polarity polarity;
     public enum Polarity { white, black }

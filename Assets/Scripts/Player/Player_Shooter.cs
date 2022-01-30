@@ -12,17 +12,19 @@ public class Player_Shooter : MonoBehaviour
 
     private Animator anim;
 
-    PhotonView view;
+    public PhotonView view;
 
     private void Start()
     {
         main_Controller = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
         anim = this.GetComponent<Animator>();
-        view = GetComponent<PhotonView>();
+            view = GetComponent<PhotonView>();
+
     }
     // Update is called once per frame
     void Update()
     {
+
         if (view.IsMine)
         {
             if (Input.GetButtonDown("Fire1") && main_Controller.IsPlayerAlive() == true && main_Controller.GameIsPaused() == false && main_Controller.GameStarted() == true)
