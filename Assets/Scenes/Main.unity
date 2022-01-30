@@ -180,7 +180,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: f172d1e3021b82942a802644c6d47bd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -607,7 +607,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 9
   m_Sprite: {fileID: 21300000, guid: 6e39757cc3c85944bb8b22edc262b234, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -882,7 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d75d2d6142fded14b94671694aa63205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2985900299827658073, guid: 683972628a0ea6a4f9677892c578e057, type: 3}
+  playerPrefab: {fileID: 2964224648444904815, guid: 171ed70782147f14e8534364ab689da4, type: 3}
   prefabBullets: {fileID: 6371932124747712433, guid: 642a8cfc95002884a96a00a3842a370c, type: 3}
   minX: -8
   maxX: 8
@@ -1053,7 +1053,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: -4
   m_Sprite: {fileID: 21300000, guid: f172d1e3021b82942a802644c6d47bd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1187,6 +1187,7 @@ MonoBehaviour:
   tempFadeInTime: 0
   tempFadeOutTime: 0
   spawnPlayers: {fileID: 529284714}
+  view: {fileID: 0}
   player1Life: {fileID: 604653330}
   player2Life: {fileID: 895004842}
   p1Life: 0
@@ -1841,7 +1842,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 924032de94781064a91f22226175a09b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

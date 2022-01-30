@@ -281,15 +281,15 @@ MonoBehaviour:
     Programming: Lucas Pigaiani & Rafael "Colono" Lagos
 
     Art:
-    UI by Gui Pro Kit, Units by Rafael "Colono" Lagos & Valquiria "Kgeib"
+    UI by Gui Pro Kit, Units by EVPO Games
 
-    Sounds:
-    Gabriel
+    Sounds: Gabriel Oliveira
 
-    Game Design: Rafael "Colono" Lagos & Valquiria "Kgeib"
+    Game
+    Design: Rafael "Colono" Lagos & Valquiria "Kgeib"
 
-    Concept:
-    Lucas Pigaiani, Rafael "Colono" Lagos & Valquiria "Kgeib"'
+    Concept: Lucas Pigaiani,
+    Rafael "Colono" Lagos & Valquiria "Kgeib"'
 --- !u!222 &266794826
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -974,6 +974,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 882428717}
   m_CullTransparentMesh: 1
+--- !u!1 &956596334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 956596336}
+  - component: {fileID: 956596335}
+  m_Layer: 0
+  m_Name: PlayMakerGUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &956596335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956596334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -73581967, guid: e743331561ef77147ae48cda9bcb8209, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  previewOnGUI: 1
+  enableGUILayout: 0
+  drawStateLabels: 1
+  enableStateLabelsInBuilds: 0
+  GUITextureStateLabels: 0
+  GUITextStateLabels: 0
+  filterLabelsWithDistance: 0
+  maxLabelDistance: 10
+  controlMouseCursor: 1
+  labelScale: 1
+--- !u!4 &956596336
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 956596334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &988373827
 GameObject:
   m_ObjectHideFlags: 0
@@ -2350,7 +2403,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1861688391}
         m_TargetAssemblyTypeName: LobbyHandler, Assembly-CSharp
-        m_MethodName: JoinRoom
+        m_MethodName: joinServer
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2416,7 +2469,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2013099926
 MonoBehaviour:
   m_ObjectHideFlags: 0
