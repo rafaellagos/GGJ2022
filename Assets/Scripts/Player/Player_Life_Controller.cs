@@ -19,6 +19,12 @@ public class Player_Life_Controller : MonoBehaviour
 
     public PhotonView view;
 
+    public Polarity polarity;
+    public enum Polarity { white, black }
+
+
+   
+   
     void Start()
     {
         main_Controller = GameObject.FindGameObjectWithTag("Main_Controller").GetComponent<Main_Controller>();
@@ -29,11 +35,15 @@ public class Player_Life_Controller : MonoBehaviour
         {
             main_Controller.view.RPC("SetP1Life", RpcTarget.All, 3);
             main_Controller.p1LifeController = this;
+            polarity = Polarity.white;
+            transform.gameObject.tag = "White";
         }
         else
         {
             main_Controller.view.RPC("SetP2Life", RpcTarget.All, 3);
             main_Controller.p2LifeController = this;
+            polarity = Polarity.black;
+            transform.gameObject.tag = "Black";
         }
 
         Invoke("ActivateDamage", invencibleTime);
@@ -68,8 +78,17 @@ public class Player_Life_Controller : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {    
-        if (collision.tag.Equals("Asteroid") && main_Controller.gameStarted)
+    {
+
+
+      /*  if ( collision.tag.Equals("White"))
+        {
+            if (polarity ==)
+            {
+
+            }
+        }*/
+        if (collision.tag.Equals("Asteroid")  && main_Controller.gameStarted)
         {
             if (playerLife > 0 && canTakeDamage == true)
             {

@@ -184,8 +184,8 @@ public class Main_Controller : MonoBehaviour
 
     public void ResetInvencibility() 
     {
-        p1LifeController.Invencibility();
-        p2LifeController.Invencibility();
+        if (p1LifeController != null) p1LifeController.Invencibility();
+        if (p2LifeController != null) p2LifeController.Invencibility();
     }
 
     public bool GameIsPaused() 
