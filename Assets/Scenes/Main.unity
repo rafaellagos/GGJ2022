@@ -563,7 +563,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 126b9d1531a9b3943bafa7d4f2c3c5d6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d5022adc24ad7d3499fe698afc1da522, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -1497,7 +1497,6 @@ MonoBehaviour:
   destroyLasers: 0
   playerAlive: 0
   gameEnded: 0
-  player: {fileID: 0}
   spawn: {fileID: 671042428}
   uI_Controller: {fileID: 1784905607}
   startText: {fileID: 1839368493}
@@ -1516,6 +1515,12 @@ MonoBehaviour:
   p1Life: 0
   p2Life: 0
   gameOVerPanel: {fileID: 709937162}
+  player1: {fileID: 0}
+  player2: {fileID: 0}
+  p1LifeController: {fileID: 0}
+  p2LifeController: {fileID: 0}
+  p1Movement: {fileID: 0}
+  p2Movement: {fileID: 0}
 --- !u!4 &861849169
 Transform:
   m_ObjectHideFlags: 0
